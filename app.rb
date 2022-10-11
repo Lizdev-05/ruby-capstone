@@ -29,5 +29,9 @@ end
     genre
   end
 
-
+  def display_genres
+    @genres.each do |genre|
+      puts "Genre: #{genre.id} - #{genre.name}"
+    end
+  end
 end 
