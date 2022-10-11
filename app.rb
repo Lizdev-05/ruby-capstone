@@ -16,5 +16,9 @@ class Application
     music
   end
 
-  
+  def add_genre(name)
+    genre = Genre.new(name)
+    @genres << genre
+    genre
+  end
 end 
