@@ -16,9 +16,18 @@ class Application
     music
   end
 
+  def display_music_albums
+    @music_albums.each do |music|
+      puts "Music album: #{music.id} - #{music.date} - #{music.sportify}"
+  end
+end
+
+
   def add_genre(name)
     genre = Genre.new(name)
     @genres << genre
     genre
   end
+
+
 end 
