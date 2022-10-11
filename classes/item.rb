@@ -1,9 +1,10 @@
-
+require 'securerandom'
 class Item 
     attr_accessor :genre, :author, :source, :label, :publish_date
+    attr_reader :id
 
     def initialize (id, genre, author, source, label, publish_date, archived: boolean)
-        @id = id
+        @id = id || SecureRandom.uuid
         @genre = genre
         @author = author
         @source = source
@@ -13,11 +14,7 @@ class Item
     end
 
     def move_to_archive
-        if can_be_archived?
-            @archived = true
-        else 
-            return false
-        end
+        @archived = can_be_archived?
     end
 
     private 
