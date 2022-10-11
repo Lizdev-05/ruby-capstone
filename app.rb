@@ -21,7 +21,10 @@ class Application
       puts "Music album: #{music.id} - #{music.date} - #{music.sportify}"
   end
 end
-
+  
+def recover_music_albums
+    @music_albums = @music_albums.select { |music| !music.archived }
+  end
 
   def add_genre(name)
     genre = Genre.new(name)
@@ -34,4 +37,6 @@ end
       puts "Genre: #{genre.id} - #{genre.name}"
     end
   end
+
+
 end 
