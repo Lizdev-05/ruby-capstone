@@ -10,6 +10,14 @@ class Application
   end
 
   #Add class functions here
+def save_files
+  instance_variables.each do |var|
+    file = []
+    file_name = var.to_s.delete("@")
+    instance_variable_get(var).each do |item|
+      file.push({ref: item, values: to_hash(item)})
+    end
+
  def add_music_album(date, sportify)
     music = Music.new(date, sportify)
     @music_albums << music
@@ -22,8 +30,14 @@ class Application
   end
 end
   
-def recover_music_albums
-    @music_albums = @music_albums.select { |music| !music.archived }
+def recover_music_albums(hash)
+   hash.each do |music|
+    current_music = music['value']
+    date = current_music['date']
+    sportify = current_music['sportify']
+    add_music_album(date, sportify)
+   end
+    
   end
 
   def add_genre(name)
