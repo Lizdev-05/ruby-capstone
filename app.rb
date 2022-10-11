@@ -37,6 +37,9 @@ def recover_music_albums
       puts "Genre: #{genre.id} - #{genre.name}"
     end
   end
-
+  
+  def recover_genres
+    @genres = @genres.select { |genre| !genre.archived }
+  end
 
 end 
