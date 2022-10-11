@@ -1,3 +1,5 @@
+require './classes/genre.rb'
+require './classes/music.rb'
 class Application
   attr_reader :books, :games, :music_albums, :genres, :labels, :authors
   def initialize
@@ -17,6 +19,16 @@ def save_files
     instance_variable_get(var).each do |item|
       file.push({ref: item, values: to_hash(item)})
     end
+    save_file('./data/#{file_name}.json', file) unless file.empty?
+  end
+end
+
+def recover_files
+  genre_file = get_file('./data/genre_list.json')
+  music_albulm_list = get_file('./data/music_album_list.json')
+  recover_music_list(music_albulm_list)
+  recover_genre_list(genre_file)
+end
 
  def add_music_album(date, sportify)
     music = Music.new(date, sportify)
@@ -30,7 +42,7 @@ def save_files
   end
 end
   
-def recover_music_albums(hash)
+def recover_music_list(hash)
    hash.each do |music|
     current_music = music['value']
     date = current_music['date']
