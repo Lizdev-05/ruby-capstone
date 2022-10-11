@@ -7,7 +7,7 @@ class Main
   end
 
   def menu
-    $stdout.sync = true
+    $stdout.sync = true  
     puts 'Welcome to the Catalog of many things console application'
     puts "
     Please choose an option from the list by entering a number:\n
@@ -51,6 +51,7 @@ class Main
     when 9
       @app.list_all_authors
     else
+      @app.save_all
       exit
     end
   end
