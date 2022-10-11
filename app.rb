@@ -38,8 +38,12 @@ def recover_music_albums
     end
   end
   
-  def recover_genres
-    @genres = @genres.select { |genre| !genre.archived }
+  def recover_genres(hash)
+   hash.each do |genre|
+    current_genre = genre['value']
+    name = current_genre['name']
+    add_genre(name)
+   end
   end
 
 end 
