@@ -1,5 +1,4 @@
-#!/usr/bin/env ruby
-require_relative 'app'
+require './app.rb'
 
 class Main
   def initialize
@@ -44,6 +43,14 @@ class Main
       @app.list_all_music_albums
     when 6
       @app.add_music_album
+      print 'Enter music album date, in date-month-year format: '
+      date = gets.chomp
+      print '\n Is the music album on sportify? (y/n): '
+      sportify_value = gets.chomp
+      sportify = on_sportify?(sportify_value)
+      @app.add_music_album(date, sportify)
+      @app.save_files
+      puts 'Music album added successfully'
     when 7
       @app.list_all_genres
     when 8

@@ -1,5 +1,5 @@
-require './classes/genre.rb'
-require './classes/music.rb'
+require '././classes/genre.rb'
+require '././classes/music.rb'
 class Application
   attr_reader :books, :games, :music_albums, :genres, :labels, :authors
   def initialize

@@ -1,4 +1,4 @@
-require './item.rb'
+require_relative 'item.rb'
 
 class Music < Item
   def initialize(date, on_sportify)
