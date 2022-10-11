@@ -5,4 +5,8 @@ class Music < Item
     super(date, archived: archived)
     @on_sportify = on_sportify
   end
+
+  def can_be_archived?
+    super && @on_sportify = true
+  end
 end
