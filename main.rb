@@ -50,7 +50,6 @@ class Main
     when 9
       @app.list_all_authors
     else
-      @app.save_all
       exit
     end
   end
