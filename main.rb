@@ -1,13 +1,12 @@
 #!/usr/bin/env ruby
 require_relative 'app'
-
 class Main
   def initialize
     @app = Application.new
   end
 
   def menu
-    $stdout.sync = true  
+    $stdout.sync = true
     puts 'Welcome to the Catalog of many things console application'
     puts "
     Please choose an option from the list by entering a number:\n
@@ -17,8 +16,8 @@ class Main
     4 - Add a game
     5 - List all music albums
     6 - Add a music album
-    7 - List all genres 
-    8 - List all labels 
+    7 - List all genres
+    8 - List all labels
     9 - List all authors
     10 - Exit "
   end
@@ -55,8 +54,7 @@ class Main
       exit
     end
   end
-
-end 
+end
 
 app = Main.new
 app.prompt
