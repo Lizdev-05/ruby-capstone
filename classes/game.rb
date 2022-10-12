@@ -11,7 +11,7 @@ class Game < Item
   end
 
   def can_be_archived?
-    return true if super 
+    return true if super
 
     false
   end

@@ -30,26 +30,37 @@ class Main
   end
 
   def options(choice)
+    game_menu(choice)
+    # when 1
+    #   @app.list_all_books
+    # when 2
+    #   @app.add_book
+    # when 3
+    #   @app.list_all_games
+    # when 4
+    #   @app.add_game
+    # when 5
+    #   @app.list_all_music_albums
+    # when 6
+    #   @app.add_music_album
+    # when 7
+    #   @app.list_all_genres
+    # when 8
+    #   @app.list_all_labels
+    # when 9
+    #   @app.list_all_authors
+    # else
+    #   exit
+    # end
+  end
+
+  def game_menu(choice)
     case choice
-    when 1
-      @app.list_all_books
-    when 2
-      @app.add_book
     when 3
       @app.list_all_games
     when 4
       @app.add_game
-    when 5
-      @app.list_all_music_albums
-    when 6
-      @app.add_music_album
-    when 7
-      @app.list_all_genres
-    when 8
-      @app.list_all_labels
-    when 9
-      @app.list_all_authors
-    else
+    when 10
       exit
     end
   end

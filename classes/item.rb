@@ -31,4 +31,3 @@ class Item
     return true if @publish_date < Date.today - 3650
   end
 end
-

@@ -6,9 +6,9 @@ class Application
 
   def initialize
     @games = []
-  end 
+  end
 
-  #Add games
+  # Add games
   def add_game
     puts 'Add a game'
     print 'Publish date (YYYY-MM-DD): '
@@ -21,28 +21,30 @@ class Application
     @games << game
     save_game(game)
     puts 'Successfully added a game!'
-  end 
+  end
 
   def save_game(game)
-    store = { id: game.id, multiplayer: game.multiplayer, last_played_at: game.last_played_at,
-    publish_date: game.publish_date }
+    store = { id: game.id, multiplayer: game.multiplayer, \
+              last_played_at: game.last_played_at, \
+              publish_date: game.publish_date }
 
     file = File.size('./data/games.json').zero? ? [] : JSON.parse(File.read('./data/games.json'))
     file.push(store)
     File.write('./data/games.json', JSON.pretty_generate(file))
-  end 
-  
-  # List all games 
+  end
+
+  # List all games
   def list_all_games
     puts "\n \n"
-      content = []
-      content = File.size('./data/games.json').zero? ? [] : JSON.parse(File.read('./data/games.json'))
-      if content.length.zero?
-        puts 'No games to display'
-      else
-        content.each do |game|
-          puts "multiplayer: #{game['multiplayer']}, last_played_at: #{game['last_played_at']}, publish_date: #{game['publish_date']}"
-        end
+    content = File.size('./data/games.json').zero? ? [] : JSON.parse(File.read('./data/games.json'))
+    if content.length.zero?
+      puts 'No games to display'
+    else
+      content.each do |game|
+        puts "multiplayer: #{game['multiplayer']}, \
+         last_played_at: #{game['last_played_at']}, \
+          publish_date: #{game['publish_date']}"
       end
+    end
   end
 end
