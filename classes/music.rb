@@ -1,8 +1,8 @@
-require_relative 'item.rb'
+require_relative 'item'
 
 class Music < Item
-  def initialize(date, on_sportify)
-    super(date, archived: archived)
+  def initialize(publish_date, on_sportify)
+    super(publish_date)
     @on_sportify = on_sportify
   end
 

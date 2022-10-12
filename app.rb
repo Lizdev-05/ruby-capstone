@@ -1,75 +1,75 @@
 require '././classes/genre.rb'
 require '././classes/music.rb'
 class Application
-  attr_reader :books, :games, :music_albums, :genres, :labels, :authors
-  def initialize
-    @books = []
-    @games = []
-    @music_albums = []
-    @genres = []
-    @labels = []
-    @authors = []
-  end
-
-  #Add class functions here
-def save_files
-  instance_variables.each do |var|
-    file = []
-    file_name = var.to_s.delete("@")
-    instance_variable_get(var).each do |item|
-      file.push({ref: item, values: to_hash(item)})
+    attr_reader :books, :games, :music_albums, :genres, :labels, :authors
+    def initialize
+      @books = []
+      @games = []
+      @music_albums = []
+      @genres = []
+      @labels = []
+      @authors = []
     end
-    save_file('./data/#{file_name}.json', file) unless file.empty?
-  end
-end
 
-def recover_files
-  genre_file = get_file('./data/genre_list.json')
-  music_albulm_list = get_file('./data/music_album_list.json')
-  recover_music_list(music_albulm_list)
-  recover_genre_list(genre_file)
-end
+#     #  Genre part
+#     def add_genre(item)
+#       print 'Enter genre name: '
+#       name = gets.chomp
 
- def add_music_album(date, sportify)
-    music = Music.new(date, sportify)
-    @music_albums << music
-    music
-  end
+#       genre = Genre.new(name)
+#       @genres << genre
+#       store_genre(genre)
+#       genre
+#     end
 
-  def display_music_albums
-    @music_albums.each do |music|
-      puts "Music album: #{music.id} - #{music.date} - #{music.sportify}"
-  end
-end
-  
-def recover_music_list(hash)
-   hash.each do |music|
-    current_music = music['value']
-    date = current_music['date']
-    sportify = current_music['sportify']
-    add_music_album(date, sportify)
-   end
-    
-  end
+#       def store_genre(genre)
+#         hash = {id: genre.id, name: genre.name}
 
-  def add_genre(name)
-    genre = Genre.new(name)
-    @genres << genre
-    genre
-  end
+#         file = File.size('./data/genre_list.json').zero? ? [] : JSON.parse(File.read('./data/genre_list.json'))
+#         file.push(hash)
+#         File.write('./data/genre_list.json', JSON.pretty_generate(file))
+#       end
 
-  def display_genres
-    @genres.each do |genre|
-      puts "Genre: #{genre.id} - #{genre.name}"
-    end
-  end
-  
-  def recover_genres(hash)
-   hash.each do |genre|
-    current_genre = genre['value']
-    name = current_genre['name']
-    add_genre(name)
-   end
-  end
+#       def list_all_genres
+#         puts 'List of all genres:'
+#         @genres.each do |genre|
+#           puts "Genre: #{genre.id} - #{genre.name}"
+#         end
+#       end
 
-end 
+#     #  Music part
+
+#       def add_music_album
+#         print 'On sportify? (y/n): '
+#         sportify_value = gets.chomp
+#         print 'Enter publish date: '
+#         publish_date = gets.chomp
+#         music = Music.new(sportify_value, publish_date)
+#         add_genre(music)
+#         puts 'Music album added successfully'
+#         store_music(music)
+#         music
+#       end
+
+#       def store_music(music)
+#         hash = {id: music.id, sportify: music.sportify, publish_date: music.publish_date}
+
+#         file = File.size('./data/music_album_list.json').zero? ? [] : JSON.parse(File.read('./data/music_album_list.json'))
+#         file.push(hash)
+#         File.write('./data/music_album_list.json', JSON.pretty_generate(file))
+#       end
+
+#       def list_all_music_albums
+#         musics = File.size('./data/music_album_list.json').zero? ? [] : JSON.parse(File.read('./data/music_album_list.json'))
+#         musics.each do |music|
+#           puts "Music album: #{music['id']} - #{music['sportify']} - #{music['publish_date']}"
+#         end
+
+#         def list_all_genres
+#           genres = File.size('./data/genre_list.json').zero? ? [] : JSON.parse(File.read('./data/genre_list.json'))
+#           genres.each do |genre|
+#             puts "Genre: #{genre['id']} - #{genre['name']}"
+#           end
+#         end
+#      end
+# end

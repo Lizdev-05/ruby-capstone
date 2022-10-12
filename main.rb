@@ -1,4 +1,4 @@
-require './app.rb'
+require './app'
 
 class Main
   def initialize
@@ -16,8 +16,8 @@ class Main
     4 - Add a game
     5 - List all music albums
     6 - Add a music album
-    7 - List all genres 
-    8 - List all labels 
+    7 - List all genres
+    8 - List all labels
     9 - List all authors
     10 - Exit "
   end
@@ -43,14 +43,6 @@ class Main
       @app.list_all_music_albums
     when 6
       @app.add_music_album
-      print 'Enter music album date, in date-month-year format: '
-      date = gets.chomp
-      print '\n Is the music album on sportify? (y/n): '
-      sportify_value = gets.chomp
-      sportify = on_sportify?(sportify_value)
-      @app.add_music_album(date, sportify)
-      @app.save_files
-      puts 'Music album added successfully'
     when 7
       @app.list_all_genres
     when 8
@@ -61,8 +53,7 @@ class Main
       exit
     end
   end
-
-end 
+end
 
 app = Main.new
 app.prompt
