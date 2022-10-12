@@ -11,16 +11,16 @@ class Application
       @authors = []
     end
 
-#     #  Genre part
-#     def add_genre(item)
-#       print 'Enter genre name: '
-#       name = gets.chomp
+    #  Genre part
+    def add_genre(item)
+      print 'Enter genre name: '
+      name = gets.chomp
 
-#       genre = Genre.new(name)
-#       @genres << genre
-#       store_genre(genre)
-#       genre
-#     end
+      genre = Genre.new(name)
+      @genres << genre
+      store_genre(genre)
+      genre
+    end
 
 #       def store_genre(genre)
 #         hash = {id: genre.id, name: genre.name}
