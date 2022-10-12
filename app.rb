@@ -8,7 +8,7 @@ class Application
     @games = []
   end 
 
-  #Add gameas and associated author
+  #Add games
   def add_game
     puts 'Add a game'
     print 'Publish date (YYYY-MM-DD): '
