@@ -1,5 +1,6 @@
 require '././classes/genre.rb'
 require '././classes/music.rb'
+require 'json'
 class Application
     attr_reader :books, :games, :music_albums, :genres, :labels, :authors
     def initialize
@@ -17,9 +18,8 @@ class Application
       name = gets.chomp
 
       genre = Genre.new(name)
-      @genres << genre
+      genre.add_item(item)
       store_genre(genre)
-      genre
     end
 
       def store_genre(genre)
@@ -28,6 +28,7 @@ class Application
         file = File.size('./data/genre_list.json').zero? ? [] : JSON.parse(File.read('./data/genre_list.json'))
         file.push(hash)
         File.write('./data/genre_list.json', JSON.pretty_generate(file))
+
       end
 
       def list_all_genres
@@ -40,9 +41,9 @@ class Application
     #  Music part
 
       def add_music_album
-        print 'On sportify? (y/n): '
-        sportify_value = gets.chomp
-        print 'Enter publish date: '
+        print 'Is the music on sportify? (Y/N): '
+        sportify_value = gets.chomp.downcase == 'y'
+       print 'Enter publish date (format: YYYY-MM-DD): '
         publish_date = gets.chomp
         music = Music.new(sportify_value, publish_date)
         add_genre(music)
@@ -52,23 +53,26 @@ class Application
       end
 
       def store_music(music)
-        hash = {id: music.id, sportify: music.sportify, publish_date: music.publish_date}
-
-        file = File.size('./data/music_album_list.json').zero? ? [] : JSON.parse(File.read('./data/music_album_list.json'))
-        file.push(hash)
-        File.write('./data/music_album_list.json', JSON.pretty_generate(file))
+        new_music = {id: music.id, sportify: music.on_sportify, publish_date: music.publish_date, genre_id: music.genre.name}
+        if File.exist?('./data/music_list.json')
+          file = File.size('./data/music_list.json').zero? ? [] : JSON.parse(File.read('./data/music_list.json'))
+          file.push(new_music)
+          File.write('./data/music_list.json', JSON.pretty_generate(file))
+        else
+          File.write('./data/music_list.json', JSON.pretty_generate([new_music]))
+        end
       end
 
       def list_all_music_albums
-        musics = File.size('./data/music_album_list.json').zero? ? [] : JSON.parse(File.read('./data/music_album_list.json'))
+        musics = File.size('./data/music_list.json').zero? ? [] : JSON.parse(File.read('./data/music_list.json'))
         musics.each do |music|
-          puts "Music album: #{music['id']} - #{music['sportify']} - #{music['publish_date']}"
+          puts "Music album:  Published date:  #{music['sportify']}, On sportify: #{music['publish_date']}, Genre: #{music['genre_id']}"
         end
 
         def list_all_genres
           genres = File.size('./data/genre_list.json').zero? ? [] : JSON.parse(File.read('./data/genre_list.json'))
           genres.each do |genre|
-            puts "Genre: #{genre['id']} - #{genre['name']}"
+            puts "Genre: #{genre['name']}"
           end
         end
      end
