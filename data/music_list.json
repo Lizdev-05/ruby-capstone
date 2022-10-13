@@ -22,5 +22,11 @@
     "publish_date": "2022-10-10",
     "sportify": true,
     "genre_id": "Country"
+  },
+  {
+    "id": "3ec7799c-2249-4562-ad8b-e5e12aae8fa2",
+    "publish_date": "2022-01-01",
+    "sportify": false,
+    "genre_id": "gslkjd"
   }
 ]

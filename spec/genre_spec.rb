@@ -1,3 +1,4 @@
+require 'rspec'
 require_relative('spec_helper')
 
 describe Genre do

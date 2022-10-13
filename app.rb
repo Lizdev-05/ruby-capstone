@@ -1,8 +1,13 @@
 require 'json'
-require './classes/book.rb'
-require './classes/label.rb'
+require './classes/book'
+require './classes/label'
 require '././classes/genre'
 require '././classes/music'
+require './classes/game'
+require './classes/author'
+require './savedata'
+
+SAVE = Savedata.new
 
 class Application
   attr_reader :books, :games, :music_albums, :genres, :labels, :authors
@@ -26,15 +31,7 @@ class Application
     label.add_item(item)
     @labels << label
     puts "Label #{label.title} was added"
-    save_labels
-  end
-
-  def save_labels
-    hash = { id: @labels[0].id, title: @labels[0].title, color: @labels[0].color }
-
-    file = File.size('./data/labels.json').zero? ? [] : JSON.parse(File.read('./data/labels.json'))
-    file.push(hash)
-    File.write('./data/labels.json', JSON.pretty_generate(file))
+    SAVE.save_labels(label)
   end
 
   # list all labels
@@ -57,23 +54,8 @@ class Application
     book = Book.new(publisher, cover_state, publish_date)
     add_label(book)
     @books << book
-    save_books(book)
+    SAVE.save_books(book)
     puts "Book #{book.publisher} was added"
-  end
-
-  # save books
-
-  def save_books(book)
-    new_books = { id: book.id, publisher: book.publisher, cover_state: book.cover_state,
-                  publish_date: book.publish_date }
-
-    if File.exist?('./data/books.json')
-      file = File.size('./data/books.json').zero? ? [] : JSON.parse(File.read('./data/books.json'))
-      file.push(new_books)
-      File.write('./data/books.json', JSON.pretty_generate(file))
-    else
-      File.write('./data/books.json', JSON.pretty_generate([new_books]))
-    end
   end
 
   #  Genre part
@@ -83,22 +65,14 @@ class Application
 
     genre = Genre.new(name)
     genre.add_item(item)
-    store_genre(genre)
-  end
-
-  def store_genre(genre)
-    hash = { id: genre.id, name: genre.name }
-
-    file = File.size('./data/genre_list.json').zero? ? [] : JSON.parse(File.read('./data/genre_list.json'))
-    file.push(hash)
-    File.write('./data/genre_list.json', JSON.pretty_generate(file))
+    SAVE.store_genre(genre)
   end
 
   def list_all_genres
     puts 'List of genres'
     genres = File.size('./data/genre_list.json').zero? ? [] : JSON.parse(File.read('./data/genre_list.json'))
     genres.each do |genre|
-      puts "Genre: #{genre.id} -  #{genre['name']}"
+      puts "Genre: #{genre['id']} -  #{genre['name']}"
     end
   end
 
@@ -112,20 +86,8 @@ class Application
     music = Music.new(publish_date, sportify_value)
     add_genre(music)
     puts 'Music album added successfully'
-    store_music(music)
+    SAVE.store_music(music)
     music
-  end
-
-  def store_music(music)
-    new_music = { id: music.id, publish_date: music.publish_date, sportify: music.on_sportify,
-                  genre_id: music.genre.name }
-    if File.exist?('./data/music_list.json')
-      file = File.size('./data/music_list.json').zero? ? [] : JSON.parse(File.read('./data/music_list.json'))
-      file.push(new_music)
-      File.write('./data/music_list.json', JSON.pretty_generate(file))
-    else
-      File.write('./data/music_list.json', JSON.pretty_generate([new_music]))
-    end
   end
 
   # list all books
@@ -141,6 +103,63 @@ class Application
     musics = File.size('./data/music_list.json').zero? ? [] : JSON.parse(File.read('./data/music_list.json'))
     musics.each do |music|
       puts "Published date: #{music['publish_date']}, On sportify: #{music['sportify']}, Genre: #{music['genre_id']}"
+    end
+  end
+
+  # Add games and author
+  def add_game
+    puts 'Add a game'
+    print 'Publish date (YYYY-MM-DD): '
+    publish_date = gets.chomp
+    print 'Multiplayer [true/false]: '
+    multiplayer = gets.chomp
+    print 'Last played at: '
+    last_played_at = gets.chomp
+    game = Game.new(multiplayer, last_played_at, publish_date)
+    add_author(game)
+    @games << game
+    SAVE.save_game(game)
+    puts 'Game added successfully'
+  end
+
+  # List all games
+  def list_all_games
+    puts "\n \n"
+    content = File.size('./data/games.json').zero? ? [] : JSON.parse(File.read('./data/games.json'))
+    if content.length.zero?
+      puts 'No games to display'
+    else
+      content.each do |game|
+        puts "multiplayer: #{game['multiplayer']}, \
+         last_played_at: #{game['last_played_at']}, \
+          publish_date: #{game['publish_date']}"
+      end
+    end
+  end
+
+  # add author method for games
+  def add_author(_item)
+    puts 'Add author'
+    print 'Enter author fist name'
+    first_name = gets.chomp
+    print 'Enter author last name'
+    last_name = gets.chomp
+    author = Author.new(first_name, last_name)
+    @authors << author
+    SAVE.save_author(author)
+    puts 'Author added successfully'
+  end
+
+  def list_all_authors
+    puts "\n \n"
+    content = File.size('./data/authors.json').zero? ? [] : JSON.parse(File.read('./data/authors.json'))
+    if content.length.zero?
+      puts 'No authors to display'
+    else
+      content.each do |author|
+        puts "first_name: #{author['first_name']}, \
+         last_name: #{author['last_name']}"
+      end
     end
   end
 end
