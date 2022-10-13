@@ -14,6 +14,8 @@ class Main
     4 - Add a game
     5 - List all music albums
     6 - Add a music album
+    5 - Add a music album
+    6 - List all music albums
     7 - List all genres
     8 - List all labels
     9 - List all authors
@@ -47,6 +49,12 @@ class Main
      APP.list_all_labels
     when 9
      APP.list_all_authors
+    when 5
+      @app.add_music_album
+    when 6
+      @app.list_all_music_albums
+    when 7
+      @app.list_all_genres
     else
       exit
     end
