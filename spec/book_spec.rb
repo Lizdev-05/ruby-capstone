@@ -16,5 +16,4 @@ describe Book do
       expect(book.publish_date).to eq '2021-01-01'
     end
   end
-
 end
