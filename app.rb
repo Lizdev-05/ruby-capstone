@@ -51,7 +51,7 @@ class Application
   def add_music_album
     print 'Is the music on sportify? (Y/N): '
     sportify_value = gets.chomp.downcase == 'y'
-    print 'Enter publish date (format: YYYY-MM-DD): '
+    print 'Enter publish date (YYYY-MM-DD): '
     publish_date = gets.chomp
     music = Music.new(publish_date, sportify_value)
     add_genre(music)
