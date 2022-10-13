@@ -1,4 +1,4 @@
-require_relative 'item'
+require './item'
 class Music < Item
   attr_reader :on_sportify
 

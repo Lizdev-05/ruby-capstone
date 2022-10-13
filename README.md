@@ -78,7 +78,13 @@ rubocop --auto-correct-all
 - Twitter: [@esi_ogaga](https://twitter.com/esi_ogaga)
 - LinkedIn: [ogagaoghene-esi](https://linkedin.com/in/ogagaoghene-esi
 
-👤 **Author2**
+ **Author2**
+
+👤 **Ojesanmi Elizabeth Oyin**
+
+- GitHub: [@githubhandle](https://github.com/Lizdev-05)
+
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/elizabeth-oyinlade-ojesanmi-0702aa16a)
 
 👤 **Author3**
 
