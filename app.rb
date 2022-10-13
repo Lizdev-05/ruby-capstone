@@ -5,9 +5,8 @@ require '././classes/genre'
 require '././classes/music'
 
 class Application
-  
   attr_reader :books, :games, :music_albums, :genres, :labels, :authors
-  
+
   def initialize
     @books = []
     @games = []
@@ -16,8 +15,7 @@ class Application
     @labels = []
     @authors = []
   end
-  
-  
+
   # add label to book
   def add_label(item)
     puts 'Enter label title:'
@@ -30,8 +28,7 @@ class Application
     puts "Label #{label.title} was added"
     save_labels
   end
-  
-  
+
   def save_labels
     hash = { id: @labels[0].id, title: @labels[0].title, color: @labels[0].color }
 
@@ -49,7 +46,7 @@ class Application
     end
   end
   # add book method
-  
+
   def add_book
     print 'Enter book publisher:'
     publisher = gets.chomp
@@ -64,18 +61,20 @@ class Application
     puts "Book #{book.publisher} was added"
   end
 
-  
   # save books
 
   def save_books(book)
-    new_books = { id: book.id, publisher: book.publisher, cover_state: book.cover_state, publish_date: book.publish_date }
-     
+    new_books = { id: book.id, publisher: book.publisher, cover_state: book.cover_state,
+                  publish_date: book.publish_date }
+
     if File.exist?('./data/books.json')
       file = File.size('./data/books.json').zero? ? [] : JSON.parse(File.read('./data/books.json'))
       file.push(new_books)
       File.write('./data/books.json', JSON.pretty_generate(file))
     else
       File.write('./data/books.json', JSON.pretty_generate([new_books]))
+    end
+  end
 
   #  Genre part
   def add_genre(item)
@@ -94,13 +93,6 @@ class Application
     file.push(hash)
     File.write('./data/genre_list.json', JSON.pretty_generate(file))
   end
-
-  # def list_all_genres
-  #   puts 'List of all genres:'
-  #   @genres.each do |genre|
-  #     puts "Genre: #{genre.id} - #{genre.name}"
-  #   end
-  # end
 
   def list_all_genres
     puts 'List of genres'
@@ -143,7 +135,7 @@ class Application
       puts "Publisher: #{b['publisher']}, Cover State: #{b['cover_state']}, Publish Date: #{b['publish_date']}"
     end
   end
-end
+
   def list_all_music_albums
     puts "Music album's list"
     musics = File.size('./data/music_list.json').zero? ? [] : JSON.parse(File.read('./data/music_list.json'))

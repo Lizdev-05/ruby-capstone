@@ -1,4 +1,4 @@
-require_relative 'app'
+require './app.rb'
 
 class Main
   APP = Application.new
@@ -32,23 +32,23 @@ class Main
   def options(choice)
     case choice
     when 1
-     APP.list_all_books
+      APP.list_all_books
     when 2
-     APP.add_book
+      APP.add_book
     when 3
-     APP.list_all_games
+      APP.list_all_games
     when 4
-     APP.add_game
+      APP.add_game
     when 5
-     APP.list_all_music_albums
+      APP.list_all_music_albums
     when 6
-     APP.add_music_album
+      APP.add_music_album
     when 7
-     APP.list_all_genres
+      APP.list_all_genres
     when 8
-     APP.list_all_labels
+      APP.list_all_labels
     when 9
-     APP.list_all_authors
+      APP.list_all_authors
     when 5
       @app.add_music_album
     when 6
