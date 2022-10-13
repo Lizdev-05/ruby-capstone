@@ -39,8 +39,10 @@ Layout/ExtraSpacing:
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
 Layout/EndOfLine:
-  Enabled: False
+  EnforcedStyle: crlf
 Lint/RaiseException:
   Enabled: false
 Lint/StructNewOverride:
