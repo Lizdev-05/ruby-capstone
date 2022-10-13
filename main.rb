@@ -1,10 +1,7 @@
-#!/usr/bin/env ruby
 require_relative 'app'
 
 class Main
-  def initialize
-    @app = Application.new
-  end
+  APP = Application.new
 
   def menu
     $stdout.sync = true
@@ -17,8 +14,8 @@ class Main
     4 - Add a game
     5 - List all music albums
     6 - Add a music album
-    7 - List all genres 
-    8 - List all labels 
+    7 - List all genres
+    8 - List all labels
     9 - List all authors
     10 - Exit "
   end
@@ -33,29 +30,28 @@ class Main
   def options(choice)
     case choice
     when 1
-      @app.list_all_books
+     APP.list_all_books
     when 2
-      @app.add_book
+     APP.add_book
     when 3
-      @app.list_all_games
+     APP.list_all_games
     when 4
-      @app.add_game
+     APP.add_game
     when 5
-      @app.list_all_music_albums
+     APP.list_all_music_albums
     when 6
-      @app.add_music_album
+     APP.add_music_album
     when 7
-      @app.list_all_genres
+     APP.list_all_genres
     when 8
-      @app.list_all_labels
+     APP.list_all_labels
     when 9
-      @app.list_all_authors
+     APP.list_all_authors
     else
       exit
     end
   end
-
-end 
+end
 
 app = Main.new
 app.prompt
