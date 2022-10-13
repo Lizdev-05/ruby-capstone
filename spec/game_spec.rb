@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../classes/game'
+require '../classes/game'
 
 RSpec.describe 'Game class' do
   before :each do

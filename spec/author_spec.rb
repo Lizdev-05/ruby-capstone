@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../classes/author'
+require '../classes/author.rb'
 
 describe 'Author' do
   before :each do

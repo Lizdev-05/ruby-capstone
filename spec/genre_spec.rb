@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative('spec_helper')
+require './spec_helper'
 
 describe Genre do
   let(:genre) { Genre.new('Rock') }
