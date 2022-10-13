@@ -18,6 +18,11 @@ class Item
     @genre = genre
   end
 
+  def add_label(label)
+    label.items << self unless label.items.include?(self)
+    @label = label
+  end
+
   private
 
   def can_be_archived?
