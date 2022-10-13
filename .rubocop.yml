@@ -55,4 +55,7 @@ Style/HashTransformValues:
   Enabled: false
 Style/EndOfLine:
   EnforcedStyle: crlf
+  Style/EndOfLine:
+  EnforcedStyle: lf
+
 
