@@ -1,4 +1,4 @@
-require './app.rb'
+require './app'
 
 APP = Application.new
 
