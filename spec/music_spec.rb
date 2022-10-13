@@ -1,5 +1,5 @@
 require 'rspec'
-require './spec_helper'
+require_relative('spec_helper')
 
 describe Music do
   let(:music) { Music.new('2021-01-01', true) }

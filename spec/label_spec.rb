@@ -1,4 +1,5 @@
-require '../classes/label'
+require 'rspec'
+require_relative '../classes/label'
 
 describe Label do
   let(:label) { Label.new('label', 'red') }

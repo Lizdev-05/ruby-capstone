@@ -1,5 +1,4 @@
-require 'rspec'
-require '../classes/book'
+require_relative '../classes/book'
 
 describe Book do
   let(:book) { Book.new('publisher', 'cover_state', '2021-01-01') }
@@ -17,4 +16,5 @@ describe Book do
       expect(book.publish_date).to eq '2021-01-01'
     end
   end
+
 end
