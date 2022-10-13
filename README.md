@@ -10,7 +10,7 @@ A simple console application written in Ruby which helps you to store catalog of
 - Rspec
 
 ## Demo Video
-
+https://drive.google.com/file/d/1vWf-00ltIUnoQa7Ne-1Oo2unnZNqi3TK/view?usp=sharing
 ## Built With
 
 - Ruby
@@ -72,6 +72,13 @@ rubocop --auto-correct-all
 
 ## Authors
 
+
+👤 **Mohamed aachour**
+
+- GitHub: [](https://github.com/)
+- Twitter: [](https://twitter.com/)
+- LinkedIn: [](https://linkedin.com/in/
+
 👤 **Esi Ogagaoghene**
 
 - GitHub: [ogagaoghene](https://github.com/ogagaoghene)
@@ -85,8 +92,6 @@ rubocop --auto-correct-all
 - GitHub: [@githubhandle](https://github.com/Lizdev-05)
 
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/elizabeth-oyinlade-ojesanmi-0702aa16a)
-
-👤 **Author3**
 
 
 ## 🤝 Contributors
