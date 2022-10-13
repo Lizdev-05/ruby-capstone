@@ -31,10 +31,18 @@ class Application
     File.write('./data/genre_list.json', JSON.pretty_generate(file))
   end
 
+  # def list_all_genres
+  #   puts 'List of all genres:'
+  #   @genres.each do |genre|
+  #     puts "Genre: #{genre.id} - #{genre.name}"
+  #   end
+  # end
+
   def list_all_genres
-    puts 'List of all genres:'
-    @genres.each do |genre|
-      puts "Genre: #{genre.id} - #{genre.name}"
+    puts 'List of genres'
+    genres = File.size('./data/genre_list.json').zero? ? [] : JSON.parse(File.read('./data/genre_list.json'))
+    genres.each do |genre|
+      puts "Genre: #{genre.id} -  #{genre['name']}"
     end
   end
 
@@ -45,7 +53,7 @@ class Application
     sportify_value = gets.chomp.downcase == 'y'
     print 'Enter publish date (format: YYYY-MM-DD): '
     publish_date = gets.chomp
-    music = Music.new(sportify_value, publish_date)
+    music = Music.new(publish_date, sportify_value)
     add_genre(music)
     puts 'Music album added successfully'
     store_music(music)
@@ -53,7 +61,7 @@ class Application
   end
 
   def store_music(music)
-    new_music = { id: music.id, sportify: music.on_sportify, publish_date: music.publish_date,
+    new_music = { id: music.id, publish_date: music.publish_date, sportify: music.on_sportify,
                   genre_id: music.genre.name }
     if File.exist?('./data/music_list.json')
       file = File.size('./data/music_list.json').zero? ? [] : JSON.parse(File.read('./data/music_list.json'))
@@ -65,16 +73,10 @@ class Application
   end
 
   def list_all_music_albums
+    puts 'List of music albums'
     musics = File.size('./data/music_list.json').zero? ? [] : JSON.parse(File.read('./data/music_list.json'))
     musics.each do |music|
-      puts "Music album:  Published date:  #{music['sportify']}, On sportify: #{music['publish_date']}, Genre: #{music['genre_id']}"
-    end
-
-    def list_all_genres
-      genres = File.size('./data/genre_list.json').zero? ? [] : JSON.parse(File.read('./data/genre_list.json'))
-      genres.each do |genre|
-        puts "Genre: #{genre['name']}"
-      end
+      puts "Published date: #{music['publish_date']}, On sportify: #{music['sportify']}, Genre: #{music['genre_id']}"
     end
   end
 end

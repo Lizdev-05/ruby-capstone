@@ -14,8 +14,8 @@ class Main
     2 - Add a book
     3 - List all games
     4 - Add a game
-    5 - List all music albums
-    6 - Add a music album
+    5 - Add a music album
+    6 - List all music albums
     7 - List all genres
     8 - List all labels
     9 - List all authors
@@ -31,24 +31,12 @@ class Main
 
   def options(choice)
     case choice
-    when 1
-      @app.list_all_books
-    when 2
-      @app.add_book
-    when 3
-      @app.list_all_games
-    when 4
-      @app.add_game
     when 5
-      @app.list_all_music_albums
-    when 6
       @app.add_music_album
+    when 6
+      @app.list_all_music_albums
     when 7
       @app.list_all_genres
-    when 8
-      @app.list_all_labels
-    when 9
-      @app.list_all_authors
     else
       exit
     end
